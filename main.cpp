@@ -52,7 +52,7 @@ void readin(Memory & memory, const char* input_file){
 			copy(std::istream_iterator<std::string>(iss),
 				std::istream_iterator<std::string>(),
 				back_inserter(tokens));
-			process_name = tokens[0];
+			process_name = tokens[0][;
 			process_size = std::stoi(tokens[1]);
             Process p(program_name, process_size);
 			for (int i = 2; i < tokens.size(); i = i + 2)
