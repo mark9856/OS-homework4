@@ -5,7 +5,7 @@
 #include "memory.h"
 
 #define MEMORY_SIZE 1600
-
+/******************/
 //function prototype
 void readIn(Memory& memory, std::ifstream& input);
 
