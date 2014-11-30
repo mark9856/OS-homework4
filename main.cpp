@@ -51,7 +51,7 @@ void readin(const char* input_file){
 			copy(std::istream_iterator<std::string>(iss),
 				std::istream_iterator<std::string>(),
 				back_inserter(tokens));
-			process_name = tokens[0];
+			process_name = tokens[0][;
 			process_size = std::stoi(tokens[1]);
 			for (int i = 2; i < tokens.size(); i = i + 2)
 			{
