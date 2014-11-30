@@ -24,12 +24,13 @@ int main(int argc, char* argv[]){
 		usage();
 	}
 
-    readin(argv[1]);
+    Memory M(MEMORY_SIZE, algorithm);
+    readin(M, argv[1]);
 
 	return 0;
 }
 
-void readin(const char* input_file){
+void readin(Memory & memory, const char* input_file){
 	std::ifstream file(input_file);
 	std::string line;
 
@@ -53,14 +54,17 @@ void readin(const char* input_file){
 				back_inserter(tokens));
 			process_name = tokens[0];
 			process_size = std::stoi(tokens[1]);
+            Process p(program_name, process_size);
 			for (int i = 2; i < tokens.size(); i = i + 2)
 			{
 				/* code */
 				arrive_time = std::stoi(tokens[i]);
 				leave_time = std::stoi(tokens[i + 1]);
+                p.addTime(arrive_time, leave_time);
 			}
-			std::cout << "Process Name: " << process_name << " process_size: " << process_size
-				<< " arrive_time: " << arrive_time << " leave_time: " << leave_time << std::endl;
+            memory.addProcess(p);
+			// std::cout << "Process Name: " << process_name << " process_size: " << process_size
+			// 	<< " arrive_time: " << arrive_time << " leave_time: " << leave_time << std::endl;
     	}
     	file.close();
     }
