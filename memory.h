@@ -16,7 +16,7 @@ public:
     int next();
     int worst();
     int noncontig();
-    int defrag();
+    int defrag(int time_elapse);
     void printMemory(int event, int time_elapse);
 private:
     int size;

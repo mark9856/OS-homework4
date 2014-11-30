@@ -10,6 +10,7 @@ public:
     bool addTime(int arrive, int leave);
     int getSize() const {return size;}
     char getName() const {return name;}
+    std::map<int, int> getTimeMap() {return time;}
 private:
     char name;
     int size;
