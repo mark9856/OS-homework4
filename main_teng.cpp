@@ -38,7 +38,9 @@ int main(int argc, char* argv[]) {
         readIn(M, argv[2]);
     }
     //print memory at time 0
-    M.printMemory(0, 0);
+    M.printMemory(0, time_elapse);
+    M.defrag(time_elapse);
+    M.printMemory(0, time_elapse);
     /*
     while (1) {
         if (!q) {//if not quiet-user mode
