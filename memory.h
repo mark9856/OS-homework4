@@ -19,10 +19,8 @@ public:
     int defrag();
     void printMemory(int event, int time_elapse);
     int leave(Process p);
-    bool sizeEditMap(int old_addr, int old_size, int new_addr, int new_size);
     bool removeFromSizeMap(int old_addr);
     void printMap();
-    void checkMap();
     bool addSizeMap(int new_addr, int new_size);
 private:
     int size;
