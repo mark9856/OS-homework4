@@ -54,7 +54,7 @@ void readin(Memory & memory, const char* input_file){
 				back_inserter(tokens));
 			process_name = tokens[0][;
 			process_size = std::stoi(tokens[1]);
-            Process p(program_name, process_size);
+            Process p(process_name, process_size);
 			for (int i = 2; i < tokens.size(); i = i + 2)
 			{
 				/* code */
@@ -73,3 +73,6 @@ void readin(Memory & memory, const char* input_file){
         usage(); 
     }
 }
+
+
+
