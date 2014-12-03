@@ -26,7 +26,7 @@ int main(int argc, char* argv[]) {
     Memory M(MEMORY_SIZE);
     bool q = 0;//quiet-user flag
     int event = 0;//denote if an event happened in the last second
-    //event: 0(nothing),1(process exit), 2(defragmentation), 3(outof memory)
+    //event: 0(nothing),1(process exit), 2(defragmentation), 3(outof memory), 4(process enter)
     int time = -1;//user input time
     
     if (argc == 3) {
@@ -47,38 +47,43 @@ int main(int argc, char* argv[]) {
     while (1) {
         if (!q) {//if not quiet-user mode
             if (time == 0) {//user need to type in a time
-                M.printMemory(0, time_elapse);
+                if (time_elapse!=0&&time_elapse!=1)
+                    M.printMemory(0, time_elapse-1);
+                std::cout<<"\nPlease enter integer t:\n";
                 std::cin >> time;
-            } else {
-                time_elapse++;
-                //proceed one second for all processes
-                //in the memory
-                event = M.runOneSecond(time_elapse);
-                if (event != 0) {//if an event happens
-                    M.printMemory(event, time_elapse);
+                if (time==0) {
+                    break;
                 }
-                time--;
             }
-        } else {//if quiet-user mode
+            //proceed one second for all processes
+            //in the memory
+            event = M.runOneSecond(time_elapse);
             
+            if (time_elapse==0) {
+                M.printMemory(0,time_elapse);
+                time=1;
+            }
+            
+            if (event != 0) {//if an event happens
+                M.printMemory(event, time_elapse);
+            }
+            time_elapse++;
+            time--;
+
+        } else {//if quiet-user mode
             //proceed one second for all processes
             //in the memory
             event = M.runOneSecond(time_elapse);
             if (event != 0) {//if an event happens
                 M.printMemory(event, time_elapse);
             }
-            M.printMemory(event, time_elapse);
-
-            if (time_elapse == 1500){
-            // if (time_elapse == 5){
-                // break;
-                return 0;
-            }
+            if (time_elapse==0) M.printMemory(event, time_elapse);
             time_elapse++;
         }
+        if (event == 3) {
+            break;
+        }
     }
-
-    
     
     return 0;
 }

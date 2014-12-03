@@ -7,7 +7,6 @@
 class Memory {
 public:
     Memory(int s);
-    //Memory(int s, std::string algo) {}
     void setAlgorithm(std::string algo) {algorithm = algo;}
     void addProcess(Process& p);
     int runOneSecond(int time_elapse);
@@ -16,8 +15,9 @@ public:
     int next(Process p);
     int worst(Process p);
     int noncontig(Process p);
-    int defrag();
+    int defrag(int time_elapse);
     void printMemory(int event, int time_elapse);
+    void printMemory(int event, Process& p, int time_elapse);
     int leave(Process p);
     bool removeFromSizeMap(int old_addr);
     void printMap();
